@@ -1,0 +1,39 @@
+---
+title: "Parasaurolophus"
+author: "BJ"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+##Table One, Endocast, visualized
+
+```{r}
+#load libraries
+
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+```{r}
+#read in csv
+table1 <- read_csv(here("data", "endocast_table1.csv"))
+```
+
+```{r}
+#turn headers lower_snake_case
+table1 <- table1 |> clean_names()
+
+#change the class of some variables
+class(table1$total_length_of_endocast_without_olfactory_bulbs_mm)
+
+table1 <- table1 |>
+  mutate(total_length_of_endocast_without_olfactory_bulbs_mm = as.numeric(total_length_of_endocast_without_olfactory_bulbs_mm))
+
+class(table1$total_length_of_endocast_without_olfactory_bulbs_mm)
+
+#deal with NAs (remove slash) and * 
+```
+
